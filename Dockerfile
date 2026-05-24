@@ -13,7 +13,7 @@ RUN go mod download
 RUN CGO_ENABLED=0 go build -ldflags="-s -w" -o /usr/local/bin/webhook
 
 # Base
-FROM alpine3.23 AS base
+FROM alpine:3.23 AS base
 
 # Install common dependencies
 RUN apk add --no-cache \
@@ -28,12 +28,8 @@ RUN if [ "$AWS_ENABLED" = "true" ]; then apk add --no-cache aws-cli; fi
 
 # Create non root user
 RUN adduser -D webhook && \
-    mkdir -p /opt/webhook/included-scripts && \
     mkdir -p /opt/webhook/scripts && \
     chown -R webhook:webhook /opt/webhook
-
-# Copy included scripts
-COPY --chown=webhook:webhook ./scripts/ /opt/webhook/included-scripts/
 
 # Webhook
 FROM base AS webhook
