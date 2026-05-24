@@ -1,8 +1,8 @@
 [
   {
     "id": "demo",
-    "execute-command": "/opt/automations/scripts/webhook.sh",
-    "command-working-directory": "/opt/automations/scripts",
+    "execute-command": "/opt/webhook/scripts/webhook.sh",
+    "command-working-directory": "/opt/webhook/scripts",
     "response-message": "{\"status\": \"ok\"}",
     "response-headers":
     [

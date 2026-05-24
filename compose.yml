@@ -6,12 +6,12 @@ services:
       target: webhook
       args:
         AWS_ENABLED: "true"
-    command: ["-hooks=/opt/automations/hooks.json", "-verbose"]
+    command: ["-hooks=/opt/webhook/hooks.json", "-verbose"]
     networks:
       - default
     volumes:
-      - ./examples/hooks.json:/opt/automations/hooks.json
-      - ./examples/webhook.sh:/opt/automations/scripts/webhook.sh
+      - ./examples/hooks.json:/opt/webhook/hooks.json
+      - ./examples/webhook.sh:/opt/webhook/scripts/webhook.sh
     healthcheck:
       test: [ "CMD", "wget", "--spider", "-q", "http://localhost:9000/" ]
       interval: 5s
